@@ -27315,7 +27315,7 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [books, setBooks] = (0, _react.useState)([
+    const [movies, setMovies] = (0, _react.useState)([
         {
             id: 1,
             title: "The Dark Knight",
@@ -27371,7 +27371,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "jG6mqaYEtDPrd/cSKbTGJxTSmLw=");
+_s(MainView, "Z9c2PAcpVhAZBjqoBPZrOvluqZY=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
