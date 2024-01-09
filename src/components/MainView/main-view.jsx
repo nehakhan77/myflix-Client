@@ -10,7 +10,7 @@ export const MainView = () => {
     fetch("https://careerfoundry-movieflix-59ee318aca62.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("movies from api:", data);
         const moviesFromApi = data.map((movie) => {
           return {
             _id: movie._id,
