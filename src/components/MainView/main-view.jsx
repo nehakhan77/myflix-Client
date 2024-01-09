@@ -30,13 +30,60 @@ export const MainView = () => {
   }, []);
 
   if (selectedMovie) {
-    return (
+    let similarMovies = movies.filter((movie) => {
+      return (
+        movie._id !== selectedMovie._id &&
+        movie.Genre.Name === selectedMovie.Genre.Name
+      );
+    });
+    if (similarMovies.length === 0) {
+      return (
+        <>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setselectedMovie(null)}
+          />
+          <br />
+          <h2>Similar Movies</h2>
+          <p>There are no similar movies.</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setselectedMovie(null)}
+          />
+          <br />
+          <h2>Similar Movies</h2>
+          {similarMovies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setselectedMovie(newSelectedMovie);
+              }}
+            />
+          ))}
+        </>
+      );
+    }
+  }
+
+  return (
+    <>
       <MovieView
         movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
+        onBackClicked={() => {
+          setSelectedMovie(null);
+        }}
       />
-    );
-  }
+      <hr />
+      <h2>Similar Movies</h2>
+      {similarMovies.map()}
+    </>
+  );
 
   if (movies.length === 0) {
     return <div>This list is empty!</div>;
