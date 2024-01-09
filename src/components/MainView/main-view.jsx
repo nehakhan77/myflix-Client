@@ -71,20 +71,6 @@ export const MainView = () => {
     }
   }
 
-  return (
-    <>
-      <MovieView
-        movie={selectedMovie}
-        onBackClicked={() => {
-          setSelectedMovie(null);
-        }}
-      />
-      <hr />
-      <h2>Similar Movies</h2>
-      {similarMovies.map()}
-    </>
-  );
-
   if (movies.length === 0) {
     return <div>This list is empty!</div>;
   }
