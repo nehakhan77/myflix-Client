@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     fetch("https://careerfoundry-movieflix-59ee318aca62.herokuapp.com/movies")
       .then((response) => response.json())
@@ -28,6 +30,10 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, []);
+
+   if (!user) {
+     return <LoginView />;
+   }
 
   if (selectedMovie) {
     let similarMovies = movies.filter((movie) => {
