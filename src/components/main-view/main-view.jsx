@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+
+  // Connect app to API with Hook useEffect
   useEffect(() => {
-    fetch("https://careerfoundry-movieflix-59ee318aca62.herokuapp.com/movies")
+    if (!token) {
+      return;
+    }
+
+    fetch("https://careerfoundry-movieflix-59ee318aca62.herokuapp.com/login", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -17,6 +27,7 @@ export const MainView = () => {
             Title: movie.Title,
             ImagePath: movie.ImagePath,
             Description: movie.Description,
+            Year: movie.Year,
             Genre: {
               Name: movie.Genre.Name,
             },
@@ -27,19 +38,52 @@ export const MainView = () => {
         });
         setMovies(moviesFromApi);
       });
-  }, []);
+  }, [token]);
 
-  if (selectedMovie) {
+  if (!user) {
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
       />
     );
   }
 
-  if (movies.length === 0) {
-    return <div>This list is empty!</div>;
+  if (selectedBook) {
+    return (
+      <>
+        <button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+          }}
+        >
+          Logout
+        </button>
+        <BookView
+          book={selectedBook}
+          onBackClick={() => setSelectedBook(null)}
+        />
+      </>
+    );
+  }
+
+  if (books.length === 0) {
+    return (
+      <>
+        <button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+          }}
+        >
+          Logout
+        </button>
+        <div>The list is empty!</div>
+      </>
+    );
   }
 
   return (
