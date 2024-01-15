@@ -37,9 +37,8 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
 
-
   return (
-    //callback for the onSubmit event of form was added. This callback tells the Login API to validate username and password
+    //callback for the onSubmit event of form was added. This callback tells the Login API to validate username and password. React onSubmit is an event handler that triggers when a form is submitted. It is one of the form events that sends the input data to the handleSubmit function to utilize that information.
     <form onSubmit={handleSubmit}>
       <label>
         Username:

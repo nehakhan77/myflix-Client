@@ -9,8 +9,8 @@ export const MainView = () => {
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   // Connect app to API with Hook useEffect
   useEffect(() => {
@@ -18,7 +18,7 @@ export const MainView = () => {
       return;
     }
 
-    fetch("https://careerfoundry-movieflix-59ee318aca62.herokuapp.com/login", {
+    fetch("https://careerfoundry-movieflix-59ee318aca62.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
@@ -42,6 +42,7 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, [token]);
+  //Token is the second argument of useEffect(). This is known as the dependency array, and it ensures fetch is called every time token changes
 
   if (!user) {
     return (
@@ -104,6 +105,15 @@ export const MainView = () => {
           }}
         />
       ))}
+      <button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };
