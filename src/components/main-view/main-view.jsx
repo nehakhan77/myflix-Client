@@ -44,76 +44,34 @@ export const MainView = () => {
   }, [token]);
   //Token is the second argument of useEffect(). This is known as the dependency array, and it ensures fetch is called every time token changes
 
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </>
-    );
-  }
-
-  if (selectedBook) {
-    return (
-      <>
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-          }}
-        >
-          Logout
-        </button>
-        <BookView
-          book={selectedBook}
-          onBackClick={() => setSelectedBook(null)}
-        />
-      </>
-    );
-  }
-
-  if (books.length === 0) {
-    return (
-      <>
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-          }}
-        >
-          Logout
-        </button>
-        <div>The list is empty!</div>
-      </>
-    );
-  }
-
   return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
+    <Row>
+      {!user ? (
+        <>
+          <LoginView onLoggedIn={(user) => setUser(user)} />
+          or
+          <SignupView />
+        </>
+      ) : selectedBook ? (
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
         />
-      ))}
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </button>
-    </div>
+      ) : movies.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          ))}
+        </>
+      )}
+    </Row>
   );
 };
