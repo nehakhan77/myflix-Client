@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -39,28 +42,34 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     //callback for the onSubmit event of form was added. This callback tells the Login API to validate username and password. React onSubmit is an event handler that triggers when a form is submitted. It is one of the form events that sends the input data to the handleSubmit function to utilize that information.
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minlength="6"
+          minLength="3"
         />
-      </label>
-      <label>
-        Password:
-        <input
+      </Form.Group>
+
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minlength="6"
         />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+        <Form.Text id="passwordHelpBlock" muted>
+          Your password must be 8-20 characters long, contain letters and
+          numbers, and must not contain spaces, special characters, or emoji.
+        </Form.Text>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 };
