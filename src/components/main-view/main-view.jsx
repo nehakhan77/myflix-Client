@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import {
   NavigationBar,
   NavigationView,
@@ -15,9 +16,13 @@ export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  const updateUserData = (newUser) => {
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
+  };
 
   // Connect app to API with Hook useEffect
   useEffect(() => {
@@ -57,6 +62,7 @@ export const MainView = () => {
         user={user}
         onLoggedOut={() => {
           setUser(null);
+          setToken(null);
         }}
       />
       <Row className="justify-content-md-center">
@@ -83,7 +89,12 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
                   </Col>
                 )}
               </>
@@ -106,6 +117,24 @@ export const MainView = () => {
             }
           />
           <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <ProfileView
+                      user={user}
+                      movies={movies}
+                      setUser={setUser}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
             path="/"
             element={
               <>
@@ -117,7 +146,12 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                          movie={movie}
+                          user={user}
+                          token={token}
+                          setUser={updateUserData}
+                        />
                       </Col>
                     ))}
                   </>
