@@ -67,6 +67,13 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
     });
   };
 
+  //Convery Birthday format
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric", month: "long", day: "numeric"};
+    return new Date(dateString).toLocaleDateString(undefined , options);
+  };
+
   return (
     <Container className="my-5">
       <Row>
@@ -76,7 +83,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
               <Card.Title>My Profile</Card.Title>
               <Card.Text>Username:{user.Username}</Card.Text>
               <Card.Text>Email: {user.Email}</Card.Text>
-              <Card.Text>Birthday: {user.Birthday}</Card.Text>
+              <Card.Text>Birthday: {formatDate(user.Birthday)}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
