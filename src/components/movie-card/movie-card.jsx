@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
 
 // Here you import the PropTypes library
 import PropTypes from "prop-types";
@@ -32,11 +36,18 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie._id)}`}></Link>
-        <Button variant="link">Open</Button>
-        <Button variant="link" onClick={handleFavoriteButton}>
-          {isFavorite ? "Remove" : "Add"} favorite
-        </Button>
+        <Row>
+          <Col>
+            <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+              <Button variant="link">Open</Button>
+            </Link>
+          </Col>
+        </Row>
+        <Col>
+          <Button variant="link" onClick={handleFavoriteButton}>
+            {isFavorite ? "Remove" : "Add"} favorite
+          </Button>
+        </Col>
       </Card.Body>
     </Card>
   );

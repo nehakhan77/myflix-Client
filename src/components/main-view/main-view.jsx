@@ -11,11 +11,13 @@ import {
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { FilterSearch } from "../filter-movie/filter-movie";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
@@ -40,7 +42,6 @@ export const MainView = () => {
           return {
             _id: movie._id,
             Title: movie.Title,
-            ImagePath: movie.ImagePath,
             Description: movie.Description,
             Year: movie.Year,
             Genre: {
@@ -52,6 +53,7 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
+        setFilteredMovies(moviesFromApi);
       });
   }, [token]);
   //Token is the second argument of useEffect(). This is known as the dependency array, and it ensures fetch is called every time token changes
@@ -140,11 +142,21 @@ export const MainView = () => {
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
+                ) : filteredMovies.length === 0 ? (
+                  <>
+                    <FilterSearch
+                      movies={movies}
+                      setFilteredMovies={setFilteredMovies}
+                    />
+                    <Col>The list is empty!</Col>
+                  </>
                 ) : (
                   <>
-                    {movies.map((movie) => (
+                    <FilterSearch
+                      movies={movies}
+                      setFilteredMovies={setFilteredMovies}
+                    />
+                    {filteredMovies.map((movie) => (
                       <Col className="mb-4" key={movie.id} md={3}>
                         <MovieCard
                           movie={movie}
