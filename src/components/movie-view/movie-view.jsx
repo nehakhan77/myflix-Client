@@ -2,7 +2,6 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
@@ -16,7 +15,7 @@ export const MovieView = ({ movies }) => {
   const selectedMovie = movies.find((movie) => movie._id === movieId);
   const similarMovies = movies.filter((movie) => {
     return (
-      movie._id !== movieId && movie.Genre.Name === selectedMovie.Genre.Name  
+      movie._id !== movieId && movie.Genre.Name === selectedMovie.Genre.Name
     );
   });
 
@@ -25,6 +24,7 @@ export const MovieView = ({ movies }) => {
   return (
     <Card>
       <Card.Body>
+        <Card.Img src={movie.ImagePath} />
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Description}</Card.Text>
         <Card.Text>{movie.Genre.Name}</Card.Text>
@@ -35,13 +35,17 @@ export const MovieView = ({ movies }) => {
       </Card.Body>
       <Row className="justify-content-md-center mx-3 my-4">
         <h1>Similar Movies</h1>
-        {similarMovies.map((movie) => {
-          return (
+        {similarMovies.length !== 0 ? (
+          similarMovies.map((movie) => (
             <Col key={movie._id} className="m-3">
               <MovieCard movie={movie} />
             </Col>
-          );
-        })}
+          ))
+        ) : (
+          <Col>
+            <p>There are no similar movies at the moment.</p>
+          </Col>
+        )}
       </Row>
     </Card>
   );

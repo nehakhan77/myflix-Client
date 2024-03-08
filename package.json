@@ -3,25 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "parcel ./src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.html"
   },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "author": "Neha K",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.3.2",
-    "parcel": "^2.11.0",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.0.0",
     "react-router": "6.3.0",
-    "react-router-dom": "6.3.0",
-    "react-scripts": "^4.0.0"
+    "react-router-dom": "6.3.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.11.0",
+    "parcel": "^2.11.0",
     "process": "^0.11.10"
   }
 }
