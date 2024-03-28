@@ -12,38 +12,40 @@ img {
   width: 100%;
 }
 
-.backgroundImage {
-  background-image: url("myflixpaper.6ab6b367.jpeg");
-  background-position: center;
+.login_heading {
+  color: #8b0000;
+  border-radius: 10px;
+  padding: 4%;
+  font-weight: bold;
+}
+
+.login_form {
+  background-color: #fff;
+  border: 100px;
+  margin-top: 100px;
+  padding: 30px;
+}
+
+.login_heading {
+  color: #8b0000;
+  mix-blend-mode: multiply;
+  border-radius: 10px;
+  padding: 4%;
+  font-weight: bold;
+}
+
+.login_form {
+  background-color: #fff;
+  border: 100px;
+  margin-top: 200px;
+  padding: 100px;
+}
+
+.background-image {
+  background-image: url("myflixwallpaperlandscape.c4bac6ba.png");
   background-repeat: no-repeat;
-  background-size: contain;
-  background-attachment: fixed;
-  width: 100vw;
-  min-height: 100vh;
-}
-
-.login_heading {
-  color: #8b0000;
-  mix-blend-mode: multiply;
-  border-radius: 10px;
-  padding: 4%;
-  font-weight: bold;
-}
-
-.backgroundImage {
-  background-image: url("myflixpaper.6ab6b367.jpeg");
-  background-position: center;
   background-size: cover;
-  width: 100%;
-  height: 100vh;
-}
-
-.login_heading {
-  color: #8b0000;
-  mix-blend-mode: multiply;
-  border-radius: 10px;
-  padding: 4%;
-  font-weight: bold;
+  background-attachment: fixed;
 }
 
 :root, [data-bs-theme="light"] {

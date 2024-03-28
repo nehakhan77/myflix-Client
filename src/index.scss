@@ -1,3 +1,10 @@
+.background-image {
+    background-image: url('./images/myflixwallpaperlandscape.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
 
 @import '~bootstrap/scss/bootstrap.scss';
 

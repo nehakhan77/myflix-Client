@@ -40,14 +40,16 @@ export const SignupView = () => {
   };
 
   return (
-    <Row className="backgroundImage mt-2 mb-2">
-      <Form>
+    <Row className="mt-2 mb-2">
+      <Form className="login_form">
         <h1 className="login_heading text-center display-1">MyFlix</h1>
         <br />
-        <h3 className="login_heading text-center">Create a Myflix account below</h3>
+        <h3 className="login_heading text-center">
+          Create a Myflix account below
+        </h3>
         <br />
         <p className="login_heading text-center">
-          Already have an account? <a href="/signup">Login here</a>
+          Already have an account? <a href="/login">Login here</a>
         </p>
         <Form.Group controlId="signUpFormUsername">
           <Form.Label>Username:</Form.Label>
@@ -93,3 +95,5 @@ export const SignupView = () => {
     </Row>
   );
 };
+
+export default SignupView;

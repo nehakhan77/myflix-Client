@@ -1,17 +1,14 @@
-.backgroundImage {
-    background-image: url('../../images/myflixpaper.jpeg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    width: 100vw;
-}
-
 .login_heading {
     color: darkred;
     font-weight: bold;
-    mix-blend-mode: multiply;
     border-radius: 10px;
     padding: 4%;
+}
+
+.login_form {
+    background-color: white;
+    margin-top: 100px;
+    padding-top: 50px;
+    border: round($number: 100);
+    padding: 30px;
 }

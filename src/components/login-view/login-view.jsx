@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -48,39 +48,39 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     ////callback for the onSubmit event of form was added. This callback tells the Login API to validate username and password. React onSubmit is an event handler that triggers when a form is submitted. It is one of the form events that sends the input data to the handleSubmit function to utilize that information.
-    <div className="backgroundImage mt-2 mb-2">
-      <Form onSubmit={handleSubmit}>
-        <h1 className="login_heading text-center display-1">MyFlix</h1>
-        <br />
-        <h3 className="login_heading text-center">Log in to your account below</h3>
-        <br />
-        <p className="login_heading text-center">
-          Don't have an account? <a href="/signup">Sign up here</a>
-        </p>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            minLength="3"
-          />
-        </Form.Group>
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </div>
+   <Form onSubmit={handleSubmit} className="login_form">
+      <h1 className="login_heading text-center display-1">MyFlix</h1>
+      <br />
+      <h3 className="login_heading text-center">
+        Log in to your account below
+      </h3>
+      <br />
+      <p className="login_heading text-center">
+        Don't have an account? <a href="/signup">Sign up here</a>
+      </p>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="3"
+        />
+      </Form.Group>
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 };
 
