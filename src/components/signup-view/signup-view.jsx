@@ -41,7 +41,7 @@ export const SignupView = () => {
 
   return (
     <Row className="mt-2 mb-2">
-      <Form className="login_form">
+      <Form className="signup_form">
         <h1 className="login_heading text-center display-1">MyFlix</h1>
         <br />
         <h3 className="login_heading text-center">

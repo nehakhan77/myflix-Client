@@ -23,6 +23,11 @@ export const MainView = () => {
     localStorage.setItem("user", JSON.stringify(newUser));
   };
 
+  // when user not logged in add class background-image to body of page
+  useEffect(() => {
+    document.body.classList.toggle("background-image", !user);
+  }, [user]);
+
   // Connect app to API with Hook useEffect
   useEffect(() => {
     if (!token) {

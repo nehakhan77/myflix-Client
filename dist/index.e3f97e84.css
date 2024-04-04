@@ -34,11 +34,18 @@ img {
   font-weight: bold;
 }
 
-.login_form {
+.signup_form {
   background-color: #fff;
   border: 100px;
-  margin-top: 200px;
-  padding: 100px;
+  margin-top: 100px;
+  padding: 30px;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: #222831;
+  margin: 0;
+  padding: 0;
 }
 
 .background-image {
