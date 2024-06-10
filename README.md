@@ -24,6 +24,7 @@ mymovie API
 
 
 
+
 ## User Interface 
 
 ![Screenshot 2024-06-10 at 8 35 27 AM](https://github.com/nehakhan77/myflix-Client/assets/136394004/55e64160-391a-4378-8062-ee29dca92633)
