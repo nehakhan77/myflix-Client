@@ -1,0 +1,11 @@
+/* movie-list.scss */
+.no-wrap {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping */
+  }
+  
+  .movie-card-col {
+    flex: 0 0 auto; /* Prevents the column from shrinking */
+    margin-right: 10px; /* Add some space between cards */
+  }
